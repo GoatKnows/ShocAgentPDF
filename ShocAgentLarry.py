@@ -3,8 +3,36 @@ from PIL import Image, ImageFile
 from fpdf import FPDF
 import os
 import io
+import os
 import sys
 import subprocess
+import subprocess
+import sys
+import subprocess
+import sys
+
+# Attempt to install `fpdf` and log the output
+try:
+    from fpdf import FPDF
+except ImportError:
+    print("Installing `fpdf`...")
+    result = subprocess.run(
+        [sys.executable, "-m", "pip", "install", "fpdf"],
+        capture_output=True,
+        text=True,
+    )
+    print("Installation output:", result.stdout)
+    print("Installation errors:", result.stderr)
+    from fpdf import FPDF
+
+
+# Install `fpdf` if not already installed
+try:
+    from fpdf import FPDF
+except ImportError:
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "fpdf"])
+    from fpdf import FPDF
+
 
 # Ensure `fpdf` is installed
 try:
@@ -214,3 +242,4 @@ if uploaded_files:
             st.download_button("Download Combined PDF", data=pdf_file, file_name=output_pdf, mime="application/pdf")
 else:
     st.info("Please upload files to begin.")
+
