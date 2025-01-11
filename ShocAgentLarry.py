@@ -1,8 +1,12 @@
 import streamlit as st
-from PIL import Image
+from PIL import Image, ImageFile
 from fpdf import FPDF
 import os
 import io
+
+# --- Configure PIL to handle large images ---
+Image.MAX_IMAGE_PIXELS = None  # Disable the safety limit for large images
+ImageFile.LOAD_TRUNCATED_IMAGES = True  # Handle truncated image files gracefully
 
 # --- Streamlit Page Configuration ---
 st.set_page_config(page_title="Larry")  # Ensure this is the first Streamlit command
