@@ -3,6 +3,15 @@ from PIL import Image, ImageFile
 from fpdf import FPDF
 import os
 import io
+import sys
+import subprocess
+
+# Ensure `fpdf` is installed
+try:
+    from fpdf import FPDF
+except ImportError:
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "fpdf"])
+    from fpdf import FPDF
 
 # --- Configure PIL to handle large images ---
 Image.MAX_IMAGE_PIXELS = None  # Disable the safety limit for large images
